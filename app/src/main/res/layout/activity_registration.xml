@@ -76,32 +76,4 @@
         app:layout_constraintTop_toTopOf="parent"
         android:textColor="#17202A"/>
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="272dp"
-        android:layout_marginEnd="297dp"
-        android:layout_marginBottom="417dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_action_user" />
-
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="42dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="72dp"
-        android:layout_marginTop="408dp"
-        android:layout_marginEnd="297dp"
-        android:layout_marginBottom="281dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_action_amount_reg" />
-
 </android.support.constraint.ConstraintLayout>

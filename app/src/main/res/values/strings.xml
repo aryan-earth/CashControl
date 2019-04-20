@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">Cash Control</string>
     <string name="title_activity_maps">Map</string>
+    <string name="notification_activity">NotificationView</string>
 </resources>

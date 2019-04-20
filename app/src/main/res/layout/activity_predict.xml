@@ -32,12 +32,15 @@
         tools:layout_editor_absoluteX="0dp" />
 
     <Button
-        android:id="@+id/button5"
-        android:layout_width="135dp"
-        android:layout_height="47dp"
+        android:id="@+id/button7"
+        android:layout_width="118dp"
+        android:layout_height="39dp"
         android:layout_marginStart="277dp"
-        android:layout_marginTop="431dp"
-        android:layout_marginBottom="253dp"
+        android:layout_marginTop="195dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="497dp"
+        android:background="@drawable/spend_button"
+        android:onClick="graphs"
         android:text="View Graph"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,68 +48,74 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button7"
-        android:layout_width="135dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="195dp"
-        android:layout_marginBottom="490dp"
+        android:id="@+id/button2"
+        android:layout_width="118dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="277dp"
+        android:layout_marginTop="686dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="7dp"
+        android:background="@drawable/spend_button"
+        android:onClick="graphs"
         android:text="View Graph"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button8"
-        android:layout_width="135dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="685dp"
+        android:id="@+id/button3"
+        android:layout_width="118dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="277dp"
+        android:layout_marginTop="432dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="260dp"
+        android:background="@drawable/spend_button"
+        android:onClick="graphs"
         android:text="View Graph"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="86dp"
-        android:layout_marginEnd="97dp"
-        android:layout_marginBottom="626dp"
-        android:text='We predict that your next "Food" purchase will be of amount'
+        android:layout_width="410dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="61dp"
+        android:layout_marginBottom="566dp"
+        android:gravity="center"
         android:textColor="#FAFAFA"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView14"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="89dp"
-        android:layout_marginEnd="16dp"
+        android:id="@+id/textView16"
+        android:layout_width="413dp"
+        android:layout_height="109dp"
+        android:layout_marginTop="549dp"
         android:layout_marginBottom="81dp"
-        android:text='We predict that your next "Travel"\ purchase will be of amount'
+        android:gravity="center"
         android:textColor="#FAFAFA"
-        app:layout_constraintBottom_toTopOf="@+id/button5"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button7" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="121dp"
-        android:layout_marginBottom="66dp"
-        android:text='We predict that your next "Other"\ purchase will be of amount'
+        android:id="@+id/textView15"
+        android:layout_width="411dp"
+        android:layout_height="104dp"
+        android:layout_marginTop="304dp"
+        android:layout_marginBottom="326dp"
+        android:gravity="center"
         android:textColor="#FAFAFA"
-        app:layout_constraintBottom_toTopOf="@+id/button8"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/space2" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

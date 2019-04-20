@@ -1,6 +1,15 @@
 package com.example.cashcontrol;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.v4.app.NotificationCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,6 +19,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static com.example.cashcontrol.HistoryShow.count;
 import static com.example.cashcontrol.HistoryShow.saveTrans;
@@ -18,7 +31,14 @@ import static com.example.cashcontrol.Predict.others;
 import static com.example.cashcontrol.Predict.travel;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements LocationListener {
+
+    double home_lat = 30.357858;  //home
+    double home_lon = 76.368992; //coordinates
+    int flag = 0;
+    public static double lat;
+    public static double lon;
+    LocationManager locationManager;
     private static final  String TAG = "HistoryShow";
     SeekBar seekbar;
     TextView mspent;
@@ -27,24 +47,26 @@ public class MainActivity extends AppCompatActivity {
 
     int manualProgress;
     public static String st;
+
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "main:onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        seekbar = (SeekBar)findViewById(R.id.seekBar);
-        mspent = (TextView)findViewById(R.id.enterManuallyTextView);
+        seekbar = (SeekBar) findViewById(R.id.seekBar);
+        mspent = (TextView) findViewById(R.id.enterManuallyTextView);
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 //Change the textView according to progress
 
-                if(fromUser == true){
+                if (fromUser == true) {
                     seekBarText(progress);
                 }
 
             }
-
 
 
             @Override
@@ -57,6 +79,9 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+        //============================================
+        getLocation();
+        //TODO:Show notification if user is at home
 
         //Enter manually listener
         EditText enterCost = findViewById(R.id.enterManuallyTextView);
@@ -112,9 +137,126 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void showLocation(View view) {
-        Intent intent = new Intent(MainActivity.this, LocationShow.class);
-        startActivity(intent);
+
+    void getLocation() {
+        try {
+            locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+            locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5, this);
+        }
+        catch(SecurityException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void set(double a, double b) {
+        lat = a;
+        lon = b;
+        Log.i(TAG,  "Coordinates" + Double.toString(lat) + " "+  Double.toString(lon));
+        //TODO:
+        //run this block after each time
+
+        //Check for location in time intervals
+        //Declare the timer
+        Timer t = new Timer();
+//Set the schedule function and rate
+        t.scheduleAtFixedRate(new TimerTask() {
+
+                                  @Override
+                                  public void run() {
+                                      //call a method
+                                      repeat();
+                                  }},0,10000);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void repeat() {
+        if (home_lat - lat < 0.146037 && home_lat - lat > -0.146037 && home_lon - lon < 0.146037 && home_lon - lon > -0.146037) {
+            addNotification();
+            flag = 1;
+        } else if (((home_lat - lat) > 0.146037) && home_lat - lat < -0.146037 && home_lon - lon > 0.146037 && home_lon - lon < -0.146037) {
+            flag = 0;
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public void onLocationChanged(Location location) {
+        lat = location.getLatitude();
+        lon = location.getLongitude();
+        set(lat,lon);
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+        Toast.makeText(this, "Please Enable GPS and Internet", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+        Toast.makeText(this, "Thanks brah!", Toast.LENGTH_SHORT).show();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    public void addNotification() {
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this,"12345")
+                .setSmallIcon(R.drawable.ic_add) //set icon for notification
+                .setContentTitle("Welcome home!") //set title of notification
+                .setContentText("Did you spend any cash?")//this is notification message
+                .setAutoCancel(true) // makes auto cancel of notification
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT); //set priority of notification
+
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+
+        CharSequence name = "n";
+        String description = "d";
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
+        NotificationChannel channel = new NotificationChannel("12345", name, importance);
+        channel.setDescription(description);
+        // Register the channel with the system; you can't change the importance
+        // or other notification behaviors after this
+        //NotificationManager notificationManager = getSystemService(NotificationManager.class);
+        //notificationManager.createNotificationChannel(channel);
+
+
+
+
+
+        //Intent notificationIntent = new Intent(this, NotificationView.class);
+        //notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        //notification message will get at NotificationView
+        //notificationIntent.putExtra("message", "This is a notification message");
+
+        //PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent,
+        //PendingIntent.FLAG_UPDATE_CURRENT);
+        //builder.setContentIntent(pendingIntent);
+
+        // Add as notification
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(0, builder.build());
+        manager.createNotificationChannel(channel);
+    }
+
+    private void createNotificationChannel() {
+        // Create the NotificationChannel, but only on API 26+ because
+        // the NotificationChannel class is new and not in the support library
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = "n";
+            String description = "d";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("12345", name, importance);
+            channel.setDescription(description);
+            // Register the channel with the system; you can't change the importance
+            // or other notification behaviors after this
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
     }
 
 
@@ -208,8 +350,19 @@ public class MainActivity extends AppCompatActivity {
             int x = Integer.parseInt(walletCash);
             int y = Integer.parseInt(st);
             int z = x - y;    //Deduct money spent
-            walletCash= Integer.toString(z);  //This line converts integer to String
-            wCash.setText(walletCash);
+            if(z >= 0) {
+                walletCash = Integer.toString(z);  //This line converts integer to String
+                wCash.setText(walletCash);
+            }
+            else {
+                Context context = getApplicationContext();
+                CharSequence text = "Balance too low";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
+            }
+
         } catch(NumberFormatException exc) {
             st  = "0";
         }
@@ -231,6 +384,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
 
     public void openPredictions(View view) {
         //open predictions activity

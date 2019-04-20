@@ -1,8 +1,12 @@
 package com.example.cashcontrol;
 
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,16 +28,31 @@ public class Predict extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_predict);
-      //  predict_data = string_history;
-        Log.i(TAG,"food" + food.toString());
-        Log.i(TAG,"travel" + travel.toString());
-        Log.i(TAG,"others" + others.toString());
-         f = (int)LinearRegression(food);
-         t = (int)LinearRegression(travel);
-         o = (int)LinearRegression(others);
-        Log.i(TAG,"f" + Float.toString(f));
-        Log.i(TAG,"o" + Float.toString(o));
-        Log.i(TAG,"t" + Float.toString(t));
+        //  predict_data = string_history;
+        Log.i(TAG, "food" + food.toString());
+        Log.i(TAG, "travel" + travel.toString());
+        Log.i(TAG, "others" + others.toString());
+        f = (int) LinearRegression(food);
+        t = (int) LinearRegression(travel);
+        o = (int) LinearRegression(others);
+        Log.i(TAG, "f" + Float.toString(f));
+        Log.i(TAG, "o" + Float.toString(o));
+        Log.i(TAG, "t" + Float.toString(t));
+        TextView tv = (TextView) findViewById(R.id.textView7);
+        if (f != 0)
+            tv.setText("We predict that your next food purchase will be of Rs " + f);
+        else
+            tv.setText("We cannot predict your next food purchase");
+        TextView tv1 = (TextView) findViewById(R.id.textView15);
+        if (t != 0)
+            tv1.setText("We predict that your next travel purchase will be of Rs " + t);
+        else
+            tv1.setText("We cannot predict your next travel purchase");
+        TextView tv2 = (TextView) findViewById(R.id.textView16);
+        if (o != 0)
+            tv2.setText("We predict that your next miscellaneous purchase will be of Rs " + o);
+        else
+            tv2.setText("We cannot predict your next miscellaneous purchase");
     }
 
 
