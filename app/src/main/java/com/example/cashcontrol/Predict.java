@@ -16,6 +16,9 @@ public class Predict extends AppCompatActivity {
     public static ArrayList food  = new ArrayList<>();
     public static ArrayList travel  = new ArrayList<>();
     public static ArrayList others  = new ArrayList<>();
+    public static int f;
+    public static int t;
+    public static int o;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +28,9 @@ public class Predict extends AppCompatActivity {
         Log.i(TAG,"food" + food.toString());
         Log.i(TAG,"travel" + travel.toString());
         Log.i(TAG,"others" + others.toString());
-        int f = (int)LinearRegression(food);
-        int t = (int)LinearRegression(travel);
-        int o = (int)LinearRegression(others);
+         f = (int)LinearRegression(food);
+         t = (int)LinearRegression(travel);
+         o = (int)LinearRegression(others);
         Log.i(TAG,"f" + Float.toString(f));
         Log.i(TAG,"o" + Float.toString(o));
         Log.i(TAG,"t" + Float.toString(t));

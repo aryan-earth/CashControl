@@ -112,6 +112,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void showLocation(View view) {
+        Intent intent = new Intent(MainActivity.this, LocationShow.class);
+        startActivity(intent);
+    }
+
 
      public int enterManually(int i) {
         if(i >0 && i<=10){
