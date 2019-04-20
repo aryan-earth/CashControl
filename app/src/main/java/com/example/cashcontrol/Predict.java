@@ -13,9 +13,9 @@ public class Predict extends AppCompatActivity {
     private static final String TAG = "Data";
 
     //public static ArrayList<String> predict_data  = new ArrayList<>();
-    public static ArrayList<Integer> food  = new ArrayList<>();
-    public static ArrayList<Integer> travel  = new ArrayList<>();
-    public static ArrayList<Integer> others  = new ArrayList<>();
+    public static ArrayList food  = new ArrayList<>();
+    public static ArrayList travel  = new ArrayList<>();
+    public static ArrayList others  = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +25,36 @@ public class Predict extends AppCompatActivity {
         Log.i(TAG,"food" + food.toString());
         Log.i(TAG,"travel" + travel.toString());
         Log.i(TAG,"others" + others.toString());
+        int f = (int)LinearRegression(food);
+        int t = (int)LinearRegression(travel);
+        int o = (int)LinearRegression(others);
+        Log.i(TAG,"f" + Float.toString(f));
+        Log.i(TAG,"o" + Float.toString(o));
+        Log.i(TAG,"t" + Float.toString(t));
+    }
 
 
+    public float LinearRegression(ArrayList temp){
+        int size = temp.size();
+        int x[] = new int[size];
+        for(int i = 0;i < size;i++)
+            x[i] = i + 1;
+
+
+        int sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
+
+        for(int i = 0;i < size;i++){
+            sumX = sumX + x[i];
+            sumY = sumY + (int)temp.get(i);
+            sumXY = sumXY + (x[i]*(int)(temp.get(i)));
+            sumX2 = sumX2 + (x[i]*x[i]);
+        }
+
+        float m = (float)((size*sumXY) - (sumX*sumY)) / ((size*sumX2) - (sumX*sumX));
+        float c = (sumY - m*sumX)/size;
+
+        float predicted_value = m*(size + 1) + c;
+        return predicted_value;
     }
 }
+
