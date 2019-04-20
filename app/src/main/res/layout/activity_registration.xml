@@ -27,9 +27,9 @@
         android:id="@+id/nameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="98dp"
+        android:layout_marginStart="99dp"
         android:layout_marginTop="272dp"
-        android:layout_marginEnd="100dp"
+        android:layout_marginEnd="55dp"
         android:layout_marginBottom="414dp"
         android:ems="10"
         android:hint="Name"
@@ -47,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="99dp"
         android:layout_marginTop="408dp"
-        android:layout_marginEnd="99dp"
+        android:layout_marginEnd="55dp"
         android:layout_marginBottom="278dp"
         android:ems="10"
         android:hint="Wallet Cash Amount"
@@ -61,18 +61,47 @@
 
     <Button
         android:id="@+id/continue_registration_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="161dp"
-        android:layout_marginTop="97dp"
-        android:layout_marginEnd="162dp"
-        android:layout_marginBottom="133dp"
+        android:layout_width="100dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="554dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginBottom="90dp"
         android:background="@android:color/holo_green_light"
         android:onClick="sendDetails"
         android:text="Continue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/initalCashTextView" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="#17202A"/>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="272dp"
+        android:layout_marginEnd="297dp"
+        android:layout_marginBottom="417dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_action_user" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="408dp"
+        android:layout_marginEnd="297dp"
+        android:layout_marginBottom="281dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_action_amount_reg" />
 
 </android.support.constraint.ConstraintLayout>
