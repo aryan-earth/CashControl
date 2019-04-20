@@ -3,17 +3,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import static com.example.cashcontrol.HistoryShow.count;
 import static com.example.cashcontrol.HistoryShow.saveTrans;
@@ -111,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
                wCash = (TextView)findViewById(R.id.wallet_cash);
                wCash.setText(walletCash);
            }
+
+
 
     }
 
