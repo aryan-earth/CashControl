@@ -17,6 +17,9 @@ import android.widget.Toast;
 
 import static com.example.cashcontrol.HistoryShow.count;
 import static com.example.cashcontrol.HistoryShow.saveTrans;
+import static com.example.cashcontrol.Predict.food;
+import static com.example.cashcontrol.Predict.others;
+import static com.example.cashcontrol.Predict.travel;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -210,6 +213,20 @@ public class MainActivity extends AppCompatActivity {
         wCash = (TextView)findViewById(R.id.wallet_cash);
         count++;
         saveTrans(st);
+
+        //Determine which button is pressed
+        int id = view.getId();
+        switch(id) {
+            case R.id.button_food:
+                food.add(Integer.parseInt(st));
+                break;
+            case R.id.button_travel:
+                travel.add(Integer.parseInt(st));
+                break;
+            case R.id.button_others:
+                others.add(Integer.parseInt(st));
+                break;
+        }
     }
 
     public void openPredictions(View view) {
