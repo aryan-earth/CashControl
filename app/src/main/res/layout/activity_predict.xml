@@ -7,4 +7,103 @@
     android:background="#17202A"
     tools:context=".Predict">
 
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="220dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="538dp"
+        android:layout_marginBottom="72dp"
+        android:text='We predict that your next "Other"\ purchase will be of amount'
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:textColor="#FFFFFF" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="220dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="293dp"
+        android:layout_marginBottom="317dp"
+        android:text='We predict that your next "Travel"\ purchase will be of amount'
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:textColor="#FAFAFA" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="220dp"
+        android:layout_height="121dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="54dp"
+        android:layout_marginBottom="556dp"
+        android:text='We predict that your next "Food"\ purchase will be of amount'
+        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:textColor="#FFFFFF"
+        tools:visibility="visible" />
+
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="240dp"
+        android:layout_marginBottom="490dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraint="percentage"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <android.support.v4.widget.Space
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="478dp"
+        android:layout_marginBottom="252dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_constraint="percentage"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/button5"
+        android:layout_width="135dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="277dp"
+        android:layout_marginTop="431dp"
+        android:layout_marginBottom="253dp"
+        android:text="View Graph"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button7"
+        android:layout_width="135dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="195dp"
+        android:layout_marginBottom="490dp"
+        android:text="View Graph"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="135dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="685dp"
+        android:text="View Graph"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
