@@ -1,0 +1,324 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#17202A"
+    tools:context=".MainActivity">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView1"
+        android:layout_width="185dp"
+        android:layout_height="203dp"
+        android:layout_marginStart="210dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="308dp"
+        app:cardBackgroundColor="#1C2833"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageButton
+                android:id="@+id/historyButton"
+                android:layout_width="74dp"
+                android:layout_height="50dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="30dp"
+                android:background='@android:color/transparent'
+                android:cropToPadding="false"
+                android:elevation="5dp"
+                android:onClick="history"
+                app:srcCompat="@drawable/ic_menu_recent_history" />
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="49dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="123dp"
+        android:layout_marginTop="612dp"
+        android:layout_marginEnd="239dp"
+        android:layout_marginBottom="99dp"
+        android:text="30"
+        android:textAlignment="center"
+        android:textColor="#AED581"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="295dp"
+        android:layout_marginTop="612dp"
+        android:layout_marginEnd="66dp"
+        android:layout_marginBottom="99dp"
+        android:text="60"
+        android:textAlignment="center"
+        android:textColor="#F4511E"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="612dp"
+        android:layout_marginEnd="296dp"
+        android:layout_marginBottom="99dp"
+        android:text="20"
+        android:textAlignment="center"
+        android:textColor="#8BC34A"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="353dp"
+        android:layout_marginTop="612dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="99dp"
+        android:text="100"
+        android:textAlignment="center"
+        android:textColor="#BF360C"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="49dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="238dp"
+        android:layout_marginTop="612dp"
+        android:layout_marginEnd="124dp"
+        android:layout_marginBottom="99dp"
+        android:text="50"
+        android:textAlignment="center"
+        android:textColor="#FFEB3B"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="50dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="180dp"
+        android:layout_marginTop="612dp"
+        android:layout_marginEnd="181dp"
+        android:layout_marginBottom="99dp"
+        android:text="40"
+        android:textAlignment="center"
+        android:textColor="#FFF176"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="400dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="538dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="164dp"
+        android:max="6"
+        android:min="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="395dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="680dp"
+        android:layout_marginEnd="3dp"
+        android:background="@drawable/spend_button"
+        android:onClick="updateCash"
+        android:text="Spend"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <EditText
+        android:id="@+id/enterManuallyTextView"
+        android:layout_width="213dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="99dp"
+        android:layout_marginTop="459dp"
+        android:layout_marginEnd="99dp"
+        android:layout_marginBottom="222dp"
+        android:ems="10"
+        android:hint="Enter Manually"
+        android:inputType="number"
+        android:textAlignment="center"
+        android:textColor="#FAFAFA"
+        android:textColorHint="#FAFAFA"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="49dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="612dp"
+        android:layout_marginEnd="354dp"
+        android:layout_marginBottom="99dp"
+        android:text="10"
+        android:textAlignment="center"
+        android:textColor="#689F38"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="89dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="161dp"
+        android:layout_marginTop="111dp"
+        android:layout_marginEnd="161dp"
+        android:layout_marginBottom="547dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_acc_balance" />
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="185dp"
+        android:layout_height="203dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginEnd="213dp"
+        android:layout_marginBottom="308dp"
+        app:cardBackgroundColor="#1C2833"
+        app:cardCornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:text="Wallet"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="40sp" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="130dp"
+                android:text="Rs."
+                android:textColor="#FFFFFF"
+                android:textSize="40sp" />
+
+            <TextView
+                android:id="@+id/wallet_cash"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="75dp"
+                android:layout_marginTop="130dp"
+                android:text="1000"
+                android:textColor="#8BC34A"
+                android:textSize="40sp" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginTop="643dp"
+        android:layout_marginBottom="82dp"
+        android:background="?android:attr/listDivider"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/divider3"
+        android:layout_width="wrap_content"
+        android:layout_height="2dp"
+        android:layout_marginTop="595dp"
+        android:layout_marginBottom="130dp"
+        android:background="?android:attr/listDivider"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="83dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="83dp"
+        android:layout_marginBottom="656dp"
+        android:fontFamily="@font/allerta_stencil"
+        android:text="Cash Control"
+        android:textAlignment="center"
+        android:textColor="#8BC34A"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
