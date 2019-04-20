@@ -9,9 +9,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-       <!-- <activity android:name=".UserListActivity"></activity>-->
-        <activity android:name=".Registration"
-            android:label="Registration"/>
+        <activity android:name=".Predict"></activity>
+        <!-- <activity android:name=".UserListActivity"></activity> -->
+        <activity
+            android:name=".Registration"
+            android:label="Registration" />
         <activity android:name=".HistoryShow" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -19,9 +21,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <!--<activity android:name=".History" />-->
-
+        </activity> <!-- <activity android:name=".History" /> -->
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />

@@ -212,6 +212,12 @@ public class MainActivity extends AppCompatActivity {
         saveTrans(st);
     }
 
+    public void openPredictions(View view) {
+        //open predictions activity
+        Intent intent  = new Intent(MainActivity.this, Predict.class);
+        startActivity(intent);
+    }
+
 
     public void history(View view) {
         Intent intent  = new Intent(MainActivity.this, HistoryShow.class );
