@@ -1,25 +1,21 @@
 package com.example.cashcontrol;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-import java.util.List;
-
-import static com.example.cashcontrol.HistoryShow.string_history;
 
 public class Predict extends AppCompatActivity {
     private static final String TAG = "Data";
 
     //public static ArrayList<String> predict_data  = new ArrayList<>();
-    public static ArrayList food  = new ArrayList<>();
-    public static ArrayList travel  = new ArrayList<>();
-    public static ArrayList others  = new ArrayList<>();
+    public static ArrayList<Integer> food  = new ArrayList<>();
+    public static ArrayList<Integer> travel  = new ArrayList<>();
+    public static ArrayList<Integer> others  = new ArrayList<>();
     public static int f;
     public static int t;
     public static int o;
@@ -77,6 +73,24 @@ public class Predict extends AppCompatActivity {
 
         float predicted_value = m*(size + 1) + c;
         return predicted_value;
+    }
+
+    public void showGraphFood(View view) {
+        Button graph_button_food  = (Button)findViewById(R.id.button_food_graph);
+        Intent intent = new Intent(this, GraphFood.class);
+        startActivity(intent);
+    }
+
+    public void showGraphTravel(View view) {
+        Button graph_button_travel  = (Button)findViewById(R.id.button_graph_travel);
+        Intent intent = new Intent(this, GraphTravel.class);
+        startActivity(intent);
+    }
+
+    public void showGraphOthers(View view) {
+        Button graph_button_others  = (Button)findViewById(R.id.button_others_graph);
+        Intent intent = new Intent(this, GraphOthers.class);
+        startActivity(intent);
     }
 }
 
