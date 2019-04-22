@@ -3,12 +3,9 @@ package com.example.cashcontrol;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
 import com.jjoe64.graphview.GraphView;
 import com.jjoe64.graphview.series.DataPoint;
 import com.jjoe64.graphview.series.LineGraphSeries;
-
-import static com.example.cashcontrol.Predict.food;
 import static com.example.cashcontrol.Predict.others;
 
 public class GraphOthers extends AppCompatActivity {
