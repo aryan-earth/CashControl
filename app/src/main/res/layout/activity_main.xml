@@ -290,7 +290,7 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
+                android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:text="Wallet"
                 android:textAlignment="center"
@@ -316,6 +316,15 @@
                 android:text="1000"
                 android:textColor="#8BC34A"
                 android:textSize="40sp" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="135dp"
+                android:layout_marginTop="35dp"
+                app:srcCompat="@drawable/ic_wallet_add" />
+
         </RelativeLayout>
     </android.support.v7.widget.CardView>
 
