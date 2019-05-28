@@ -55,21 +55,92 @@ public class Predict extends AppCompatActivity {
     public float LinearRegression(ArrayList temp){
         int size = temp.size();
         int x[] = new int[size];
+        int number_of_pairs = (size*(size-1))/2;
+        float slopes[] = new float[number_of_pairs];
         for(int i = 0;i < size;i++)
             x[i] = i + 1;
 
+        int sumX = 0, sumY = 0, sumXY =0, sumX2=0;
 
-        int sumX = 0, sumY = 0, sumXY = 0, sumX2 = 0;
+        /*for(int i = 0;i < size;i++){
+            sumX = sumX + x[i];
+            sumY = sumY + (int)temp.get(i);
+        }*/
+
+        int count = 0;
+        int j_counter = 1;
+
+        for(int i = 0; i < size; i++)
+        {
+            for(int j = j_counter; j < size; j++)
+            {
+              slopes[count] = (float)((int)temp.get(j)-(int)temp.get(i))/(j-1);
+              count++;
+            }
+            j_counter++;
+        }
+
+
+
 
         for(int i = 0;i < size;i++){
             sumX = sumX + x[i];
             sumY = sumY + (int)temp.get(i);
-            sumXY = sumXY + (x[i]*(int)(temp.get(i)));
-            sumX2 = sumX2 + (x[i]*x[i]);
+            //sumXY = sumXY + (x[i]*(int)(temp.get(i)));
+            //sumX2 = sumX2 + (x[i]*x[i]);
         }
 
-        float m = (float)((size*sumXY) - (sumX*sumY)) / ((size*sumX2) - (sumX*sumX));
-        float c = (sumY - m*sumX)/size;
+        //float m = (float)((size*sumXY) - (sumX*sumY)) / ((size*sumX2) - (sumX*sumX));
+
+
+
+            //Insertion Sort
+            for(int i = 1; i < number_of_pairs; ++i) {
+                float key = slopes[i];
+                int j = i - 1;
+
+                while (j >= 0 && slopes[j] > key) {
+                    slopes[j + 1] = slopes[j];
+                    j = j - 1;
+                }
+                slopes[j + 1] = key;
+            }
+            float m;
+
+            if(number_of_pairs%2 == 0) {
+                float a = slopes[(number_of_pairs/2) - 1] / 2;
+                float b = slopes[(number_of_pairs/ 2)] / 2;
+                m = a + b;
+            }
+            else
+                m = slopes[(number_of_pairs - 1)/2];
+
+        //float c = (sumY - m*sumX)/size;
+
+        float[] intercepts = new float[size];
+        for(int i = 0; i  < size; i++)
+            intercepts[i] = (int)temp.get(i) - m*x[i];
+
+        float c;
+
+        for(int i = 1; i < size; ++i) {
+            float key = intercepts[i];
+            int j = i - 1;
+
+            while (j >= 0 && intercepts[j] > key) {
+                intercepts[j + 1] = intercepts[j];
+                j = j - 1;
+            }
+            intercepts[j + 1] = key;
+        }
+
+        if(size%2 == 0) {
+            float a = intercepts[(size/ 2)-1] / 2;
+            float b = intercepts[(size/ 2)] / 2;
+            c = a + b;
+        }
+        else
+            c = intercepts[(size -1)/2];
 
         float predicted_value = m*(size + 1) + c;
         return predicted_value;
