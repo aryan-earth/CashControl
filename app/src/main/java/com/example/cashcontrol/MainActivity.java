@@ -37,14 +37,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     int flag = 0;
 
    //Coordinates of end points of hostel
-    public static double lat_BL = 30.563466;
-    public static double lon_BL = 76.895822;
-    public static double lat_BR = 30.563420;
-    public static double lon_BR = 76.896485;
-    public static double lat_FL = 30.563578;
-    public static double lon_FL = 76.895844;
-    public static double lat_FR = 30.563528;
-    public static double lon_FR = 76.896491;
+    public static double lat_BL = 30.4169775;
+    public static double lon_BL = 77.9669465;
+    public static double lat_BR = 30.4172316;
+    public static double lon_BR = 77.9670384;
+    public static double lat_FL = 30.4171330;
+    public static double lon_FL = 77.9665147;
+    public static double lat_FR = 30.4173536;
+    public static double lon_FR = 77.9666096;
     //Current coordinates are in lat and lon
     public static double curr_lat;
     public static double curr_lon;
