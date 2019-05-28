@@ -12,13 +12,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="71dp"
-        android:layout_marginTop="38dp"
+        android:layout_marginTop="46dp"
         android:layout_marginEnd="72dp"
-        android:layout_marginBottom="102dp"
+        android:layout_marginBottom="24dp"
         android:text="Registration"
         android:textColor="@android:color/holo_green_light"
         android:textSize="50sp"
-        app:layout_constraintBottom_toTopOf="@+id/nameTextView"
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -70,11 +70,11 @@
         android:background="@android:color/holo_green_light"
         android:onClick="sendDetails"
         android:text="Continue"
+        android:textColor="#17202A"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="#17202A"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -103,5 +103,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_action_amount_reg" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="155dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="156dp"
+        android:layout_marginBottom="95dp"
+        android:text="Step 1"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_green_light"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/nameTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
 </android.support.constraint.ConstraintLayout>
