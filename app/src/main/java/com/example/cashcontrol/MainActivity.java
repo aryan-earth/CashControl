@@ -47,14 +47,14 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     public TextView aText;
 
    //Coordinates of end points of hostel
-    public static double lat_BL = 30.4169775;
-    public static double lon_BL = 77.9669465;
-    public static double lat_BR = 30.4172316;
-    public static double lon_BR = 77.9670384;
-    public static double lat_FL = 30.4171330;
-    public static double lon_FL = 77.9665147;
-    public static double lat_FR = 30.4173536;
-    public static double lon_FR = 77.9666096;
+    public static double lat_BL = 30.4171463;
+    public static double lon_BL = 77.9665542;
+    public static double lat_BR = 30.4170101;
+    public static double lon_BR = 77.9670089;
+    public static double lat_FL = 30.4173227;
+    public static double lon_FL = 77.9666327;
+    public static double lat_FR = 30.4172198;
+    public static double lon_FR = 77.9670806;
     //Current coordinates are in lat and lon
     public static double curr_lat;
     public static double curr_lon;
@@ -162,10 +162,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     void getLocation() {
         Log.i(TAG,"In get location");
         try {
+            Log.i(TAG,"IN TRY BLOCK");
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5, this);
+            Log.i(TAG,"EXITING TRY");
         }
         catch(SecurityException e) {
+            Log.i(TAG,"IN CATCH");
             e.printStackTrace();
         }
         Log.i(TAG,"Exiting getLocation");
@@ -194,13 +197,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void repeat() {
         Log.i(TAG, "In repeat");
-        if(true) {
+        if(((curr_lat > lat_BL) && (curr_lat < lat_FL)) && ((curr_lon > lon_BL) && (curr_lon < lon_BR))) {
             Log.i(TAG,"TRUE");
             //send notification
             addNotification();
         }
         else{
             Log.i(TAG,"FALSE");
+            Log.i(TAG,Double.toString(curr_lat));
+            Log.i(TAG,Double.toString(curr_lon));
         }
     }
 
@@ -227,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     public void onProviderEnabled(String provider) {
-        //Toast.makeText(this, "Thanks brah!", Toast.LENGTH_SHORT).show();
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
