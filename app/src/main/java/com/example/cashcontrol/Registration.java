@@ -22,18 +22,16 @@ public class Registration extends AppCompatActivity {
 
     }
 
-    public void sendDetails(View view) {
+    public void continueRegistration(View view) {
+        //get to setp 2 of registration
         //Get registration details from user
-        TextView nameUser  = (TextView) findViewById(R.id.nameTextView);
+        TextView nameUser  = findViewById(R.id.nameTextView);
         name = nameUser.getText().toString();
 
-        EditText iniCash = (EditText)findViewById(R.id.initalCashTextView);
+        EditText iniCash = findViewById(R.id.initalCashTextView);
         //Get the wallet cash in the form of string
         cash = iniCash.getText().toString();
-
-        //Cast the Wallet Cash of String type to integer
-        //int cash  = Integer.parseInt(Wcash);
-        Intent intent = new Intent(Registration.this , MainActivity.class);
+        Intent intent = new Intent(Registration.this, Registration1.class);
         intent.putExtra("name" , name);
         intent.putExtra("cash" , cash);
         startActivity(intent);

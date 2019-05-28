@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void repeat() {
         Log.i(TAG, "In repeat");
-        if(((curr_lat > lat_BL) && (curr_lat < lat_FL)) && ((curr_lon > lon_FL) && (curr_lon < lon_FR))) {
+        if(true) {
             Log.i(TAG,"TRUE");
             //send notification
             addNotification();

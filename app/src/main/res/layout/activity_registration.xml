@@ -68,7 +68,7 @@
         android:layout_marginEnd="156dp"
         android:layout_marginBottom="90dp"
         android:background="@android:color/holo_green_light"
-        android:onClick="sendDetails"
+        android:onClick="continueRegistration"
         android:text="Continue"
         android:textColor="#17202A"
         app:layout_constraintBottom_toBottomOf="parent"
