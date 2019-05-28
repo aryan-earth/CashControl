@@ -1,9 +1,13 @@
 package com.example.cashcontrol;
+import android.app.AlertDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -15,8 +19,11 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,20 +38,23 @@ import static com.example.cashcontrol.Predict.travel;
 
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
-
+    Context context = this;
     double home_lat = 30.563301;  //home
     double home_lon = 76.896055; //coordinates
     int flag = 0;
+    ImageButton addButton;
+    AlertDialog builder;
+    public TextView aText;
 
    //Coordinates of end points of hostel
-    public static double lat_BL = 30.563466;
-    public static double lon_BL = 76.895822;
-    public static double lat_BR = 30.563420;
-    public static double lon_BR = 76.896485;
-    public static double lat_FL = 30.563578;
-    public static double lon_FL = 76.895844;
-    public static double lat_FR = 30.563528;
-    public static double lon_FR = 76.896491;
+    public static double lat_BL = 30.4169775;
+    public static double lon_BL = 77.9669465;
+    public static double lat_BR = 30.4172316;
+    public static double lon_BR = 77.9670384;
+    public static double lat_FL = 30.4171330;
+    public static double lon_FL = 77.9665147;
+    public static double lat_FR = 30.4173536;
+    public static double lon_FR = 77.9666096;
     //Current coordinates are in lat and lon
     public static double curr_lat;
     public static double curr_lon;
@@ -192,12 +202,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         else{
             Log.i(TAG,"FALSE");
         }
-        /*if (home_lat - curr_lat < 0.146037 && home_lat - curr_lat > -0.146037 && home_lon - curr_lon < 0.146037 && home_lon - curr_lon > -0.146037) {
-            addNotification();
-            flag = 1;
-        } else if (((home_lat - curr_lat) > 0.146037) && home_lat - curr_lat < -0.146037 && home_lon - curr_lon > 0.146037 && home_lon - curr_lon < -0.146037) {
-            flag = 0;
-        }*/
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -389,6 +393,121 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 others.add(Integer.parseInt(st));
                 break;
         }
+    }
+
+    public void updateCash(String add) {
+        try {
+            int x = Integer.parseInt(walletCash);
+            int y = Integer.parseInt(add);
+            int z = x + y;    //Deduct money spent
+
+            walletCash = Integer.toString(z);  //This line converts integer to String
+            wCash.setText(walletCash);
+
+
+        } catch(NumberFormatException exc) {
+            st  = "0";
+        }
+    }
+
+    //Add money to the wallet by tapping the plus button
+    public void addMoney(View view) {
+
+        LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
+        View promptView = layoutInflater.inflate(R.layout.dialogs, null);
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+//        alertDialogBuilder.setTitle("Add Money");
+        alertDialogBuilder.setView(promptView);
+
+        final EditText addAmount = promptView.findViewById(R.id.wallet_add_input);
+        //setup a dialog window
+        alertDialogBuilder.setCancelable(false)
+                .setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        //aText.setText("Hello, " + addAmount.getText());
+                        //walletCash = walletCash + addAmount.toString();
+                        updateCash(addAmount.getText().toString());
+                    }
+                })
+                .setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.cancel();
+                            }
+                        });
+
+        // create an alert dialog
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
+
+        Button positiveButton = alert.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button negativeButton = alert.getButton(AlertDialog.BUTTON_NEGATIVE);
+        Button neutralButton = alert.getButton(AlertDialog.BUTTON_NEUTRAL);
+        alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#17202A")));
+        /*// Create the object of
+        // AlertDialog Builder class
+        AlertDialog.Builder builder
+                = new AlertDialog
+                .Builder(MainActivity.this);
+
+        // Set the message show for the Alert time
+        builder.setMessage("Enter amount to add");
+
+        // Set Alert Title
+        builder.setTitle("Add Money");
+
+        // Set Cancelable false
+        // for when the user clicks on the outside
+        // the Dialog Box then it will remain show
+        builder.setCancelable(true);
+
+        // Set the positive button with yes name
+        // OnClickListener method is use of
+        // DialogInterface interface.
+
+        builder
+                .setPositiveButton(
+                        "Yes",
+                        new DialogInterface
+                                .OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which)
+                            {
+
+                                // When the user click yes button
+                                // then app will close
+                                finish();
+                            }
+                        });
+
+        // Set the Negative button with No name
+        // OnClickListener method is use
+        // of DialogInterface interface.
+        builder
+                .setNegativeButton(
+                        "No",
+                        new DialogInterface
+                                .OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which)
+                            {
+
+                                // If user click no
+                                // then dialog box is canceled.
+                                dialog.cancel();
+                            }
+                        });
+
+        // Create the Alert dialog
+        AlertDialog alertDialog = builder.create();
+
+        // Show the Alert Dialog box
+        alertDialog.show();
+      //  alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color);*/
     }
 
 
