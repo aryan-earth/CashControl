@@ -301,9 +301,9 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="130dp"
-                android:text="Rs."
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="75dp"
+                android:text="(₹)"
                 android:textColor="#FFFFFF"
                 android:textSize="40sp" />
 
@@ -313,10 +313,11 @@
                 android:layout_height="wrap_content"
                 android:minWidth="100dp"
                 android:maxHeight="60dp"
-                android:layout_marginLeft="75dp"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="130dp"
                 android:text="1000"
                 android:textColor="#8BC34A"
+                android:autoSizeTextType="uniform"
                 android:textSize="40sp" />
 
             <ImageButton
