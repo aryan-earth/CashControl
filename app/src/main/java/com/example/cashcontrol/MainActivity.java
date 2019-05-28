@@ -20,7 +20,6 @@ import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -33,11 +32,22 @@ import static com.example.cashcontrol.Predict.travel;
 
 public class MainActivity extends AppCompatActivity implements LocationListener {
 
-    double home_lat = 30.357858;  //home
-    double home_lon = 76.368992; //coordinates
+    double home_lat = 30.563301;  //home
+    double home_lon = 76.896055; //coordinates
     int flag = 0;
-    public static double lat;
-    public static double lon;
+
+   //Coordinates of end points of hostel
+    public static double lat_BL = 30.563466;
+    public static double lon_BL = 76.895822;
+    public static double lat_BR = 30.563420;
+    public static double lon_BR = 76.896485;
+    public static double lat_FL = 30.563578;
+    public static double lon_FL = 76.895844;
+    public static double lat_FR = 30.563528;
+    public static double lon_FR = 76.896491;
+    //Current coordinates are in lat and lon
+    public static double curr_lat;
+    public static double curr_lon;
     LocationManager locationManager;
     private static final  String TAG = "HistoryShow";
     SeekBar seekbar;
@@ -55,8 +65,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         Log.i(TAG, "main:onCreate");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        seekbar = (SeekBar) findViewById(R.id.seekBar);
-        mspent = (TextView) findViewById(R.id.enterManuallyTextView);
+        seekbar = findViewById(R.id.seekBar);
+        mspent = findViewById(R.id.enterManuallyTextView);
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -80,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             }
         });
         //============================================
+        Log.i(TAG,"Before get locatioon");
         getLocation();
         //TODO:Show notification if user is at home
 
@@ -129,16 +140,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             walletCash = getIntent().getStringExtra("cash");//till here everything works
 
            if(isFirstRun) {
-               wCash = (TextView)findViewById(R.id.wallet_cash);
+               wCash = findViewById(R.id.wallet_cash);
                wCash.setText(walletCash);
            }
 
 
-
+        Log.i(TAG,"Exiting onCreate");
     }
 
 
     void getLocation() {
+        Log.i(TAG,"In get location");
         try {
             locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
             locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 5, this);
@@ -146,45 +158,57 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         catch(SecurityException e) {
             e.printStackTrace();
         }
+        Log.i(TAG,"Exiting getLocation");
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void set(double a, double b) {
-        lat = a;
-        lon = b;
-        Log.i(TAG,  "Coordinates" + Double.toString(lat) + " "+  Double.toString(lon));
-        //TODO:
+        curr_lat = a;
+        curr_lon = b;
+        Log.i(TAG,  "Coordinates" + curr_lat + " "+ curr_lon);
         //run this block after each time
 
         //Check for location in time intervals
         //Declare the timer
         Timer t = new Timer();
-//Set the schedule function and rate
+        //Set the schedule function and rate
         t.scheduleAtFixedRate(new TimerTask() {
 
                                   @Override
                                   public void run() {
                                       //call a method
                                       repeat();
-                                  }},0,10000);
+                                  }},0,1000);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void repeat() {
-        if (home_lat - lat < 0.146037 && home_lat - lat > -0.146037 && home_lon - lon < 0.146037 && home_lon - lon > -0.146037) {
+        Log.i(TAG, "In repeat");
+        if(((curr_lat > lat_BL) && (curr_lat < lat_FL)) && ((curr_lon > lon_FL) && (curr_lon < lon_FR))) {
+            Log.i(TAG,"TRUE");
+            //send notification
+            addNotification();
+        }
+        else{
+            Log.i(TAG,"FALSE");
+        }
+        /*if (home_lat - curr_lat < 0.146037 && home_lat - curr_lat > -0.146037 && home_lon - curr_lon < 0.146037 && home_lon - curr_lon > -0.146037) {
             addNotification();
             flag = 1;
-        } else if (((home_lat - lat) > 0.146037) && home_lat - lat < -0.146037 && home_lon - lon > 0.146037 && home_lon - lon < -0.146037) {
+        } else if (((home_lat - curr_lat) > 0.146037) && home_lat - curr_lat < -0.146037 && home_lon - curr_lon > 0.146037 && home_lon - curr_lon < -0.146037) {
             flag = 0;
-        }
+        }*/
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onLocationChanged(Location location) {
-        lat = location.getLatitude();
-        lon = location.getLongitude();
-        set(lat,lon);
+        Log.i(TAG,"In onLocationChanged");
+        curr_lat = location.getLatitude();
+        curr_lon = location.getLongitude();
+        Toast.makeText(this, Double.toString(curr_lat), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, Double.toString(curr_lon), Toast.LENGTH_SHORT).show();
+        set(curr_lat,curr_lon);
     }
 
     @Override
@@ -199,7 +223,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     public void onProviderEnabled(String provider) {
-        Toast.makeText(this, "Thanks brah!", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "Thanks brah!", Toast.LENGTH_SHORT).show();
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -219,24 +243,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         int importance = NotificationManager.IMPORTANCE_DEFAULT;
         NotificationChannel channel = new NotificationChannel("12345", name, importance);
         channel.setDescription(description);
-        // Register the channel with the system; you can't change the importance
-        // or other notification behaviors after this
-        //NotificationManager notificationManager = getSystemService(NotificationManager.class);
-        //notificationManager.createNotificationChannel(channel);
-
-
-
-
-
-        //Intent notificationIntent = new Intent(this, NotificationView.class);
-        //notificationIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        //notification message will get at NotificationView
-        //notificationIntent.putExtra("message", "This is a notification message");
-
-        //PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, notificationIntent,
-        //PendingIntent.FLAG_UPDATE_CURRENT);
-        //builder.setContentIntent(pendingIntent);
-
         // Add as notification
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         manager.notify(0, builder.build());
@@ -315,7 +321,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 st = "20";
                 return;
             case 2:
-                mspent.setText("30");;
+                mspent.setText("30");
                 st = "30";
                 return;
             case 3:
@@ -366,7 +372,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         } catch(NumberFormatException exc) {
             st  = "0";
         }
-        wCash = (TextView)findViewById(R.id.wallet_cash);
+        wCash = findViewById(R.id.wallet_cash);
         count++;
         saveTrans(st);
 
@@ -444,7 +450,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         SharedPreferences prefs= this.getSharedPreferences("walletKey" , MainActivity.MODE_PRIVATE);
         walletCash = prefs.getString("wallet",walletCash);
         count = prefs.getInt("count",count);
-        wCash = (TextView)findViewById(R.id.wallet_cash);
+        wCash = findViewById(R.id.wallet_cash);
         wCash.setText(walletCash);
     }
 
