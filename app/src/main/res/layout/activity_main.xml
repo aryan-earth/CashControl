@@ -311,13 +311,13 @@
                 android:id="@+id/wallet_cash"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:minWidth="100dp"
-                android:maxHeight="60dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="130dp"
+                android:autoSizeTextType="uniform"
+                android:maxHeight="60dp"
+                android:minWidth="100dp"
                 android:text="1000"
                 android:textColor="#8BC34A"
-                android:autoSizeTextType="uniform"
                 android:textSize="40sp" />
 
             <ImageButton
@@ -326,8 +326,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="140dp"
                 android:layout_marginTop="38dp"
-                android:onClick="addMoney"
                 android:background="@android:color/transparent"
+                android:onClick="addMoney"
                 app:srcCompat="@drawable/ic_wallet_add" />
 
 

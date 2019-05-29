@@ -11,6 +11,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.NotificationCompat;
@@ -398,6 +399,59 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 others.add(Integer.parseInt(st));
                 break;
         }
+
+        //show ATM
+
+                wCash.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+                        if(Integer.parseInt(walletCash) < 100) {
+                            Log.i(TAG,"In if");
+                            //Open a dialog box asking the user to show nearest ATMS or not
+                            LayoutInflater layoutInflater = LayoutInflater.from(MainActivity.this);
+                            View promptView = layoutInflater.inflate(R.layout.atm_dialog, null);
+                            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(MainActivity.this);
+                            alertDialogBuilder.setView(promptView);
+                            //setup a dialog window
+                            alertDialogBuilder.setCancelable(false)
+                                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            //Open maps
+                                            Uri gmmIntentUri = Uri.parse("geo:0,0?q=atms");
+                                            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                                            mapIntent.setPackage("com.google.android.apps.maps");
+                                            startActivity(mapIntent);
+                                        }
+                                    })
+                                    .setNegativeButton("Cancel",
+                                            new DialogInterface.OnClickListener() {
+                                                public void onClick(DialogInterface dialog, int id) {
+                                                    dialog.cancel();
+                                                }
+                                            });
+
+                            // create an alert dialog
+                            AlertDialog alert = alertDialogBuilder.create();
+                            alert.show();
+
+                            Button positiveButton = alert.getButton(AlertDialog.BUTTON_POSITIVE);
+                            Button negativeButton = alert.getButton(AlertDialog.BUTTON_NEGATIVE);
+                            Button neutralButton = alert.getButton(AlertDialog.BUTTON_NEUTRAL);
+                            alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#17202A")));
+                        }
+                    }
+                });
+
     }
 
     public void updateCash(String add) {
@@ -449,71 +503,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         Button negativeButton = alert.getButton(AlertDialog.BUTTON_NEGATIVE);
         Button neutralButton = alert.getButton(AlertDialog.BUTTON_NEUTRAL);
         alert.getWindow().setBackgroundDrawable(new ColorDrawable(Color.parseColor("#17202A")));
-        /*// Create the object of
-        // AlertDialog Builder class
-        AlertDialog.Builder builder
-                = new AlertDialog
-                .Builder(MainActivity.this);
 
-        // Set the message show for the Alert time
-        builder.setMessage("Enter amount to add");
-
-        // Set Alert Title
-        builder.setTitle("Add Money");
-
-        // Set Cancelable false
-        // for when the user clicks on the outside
-        // the Dialog Box then it will remain show
-        builder.setCancelable(true);
-
-        // Set the positive button with yes name
-        // OnClickListener method is use of
-        // DialogInterface interface.
-
-        builder
-                .setPositiveButton(
-                        "Yes",
-                        new DialogInterface
-                                .OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which)
-                            {
-
-                                // When the user click yes button
-                                // then app will close
-                                finish();
-                            }
-                        });
-
-        // Set the Negative button with No name
-        // OnClickListener method is use
-        // of DialogInterface interface.
-        builder
-                .setNegativeButton(
-                        "No",
-                        new DialogInterface
-                                .OnClickListener() {
-
-                            @Override
-                            public void onClick(DialogInterface dialog,
-                                                int which)
-                            {
-
-                                // If user click no
-                                // then dialog box is canceled.
-                                dialog.cancel();
-                            }
-                        });
-
-        // Create the Alert dialog
-        AlertDialog alertDialog = builder.create();
-
-        // Show the Alert Dialog box
-        alertDialog.show();
-      //  alertDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color);*/
     }
+
 
 
     public void openPredictions(View view) {
@@ -586,5 +578,6 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         editor.putString("wallet" , walletCash);
         editor.commit();
     }
+
 
 }

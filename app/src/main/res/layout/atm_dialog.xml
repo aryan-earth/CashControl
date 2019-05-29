@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="#17202A"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/textView123"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cash too low!Show nearby ATM's"
+        android:layout_marginLeft="40dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#8BC34A"
+        android:textSize="30dp" />
+</LinearLayout>
